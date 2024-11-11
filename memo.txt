@@ -1,0 +1,5 @@
+1. 회원가입 / 로그인 => react-hook-form + yup / zustand
+2. 회원정보 표기 => cookie & zustand
+3. api 연동(수정/삭제 etc) => axios
+4. 페이지네이션 => 
+5. 반응형
