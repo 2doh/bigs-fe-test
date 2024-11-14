@@ -1,6 +1,13 @@
-import React from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import "./css/common.css";
+import "./css/reset.css";
+import Auth from "./pages/Auth";
 function App() {
-  return <>안녕하세요.</>;
+  return (
+    <Routes>
+      <Route path="auth" element={<Auth></Auth>}></Route>
+    </Routes>
+  );
 }
 export default App;
