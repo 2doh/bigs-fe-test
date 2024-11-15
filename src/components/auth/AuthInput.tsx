@@ -1,13 +1,15 @@
+import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
-import usePlaceholder from "../../hook/usePlaceholder";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
-import styled from "@emotion/styled";
+import usePlaceholder from "../../hook/usePlaceholder";
 
 interface AuthData {
   label: string;
   clearTrigger: boolean;
-  setClearTrigger: any;
+  setClearTrigger: React.Dispatch<React.SetStateAction<boolean>>;
+  register: any;
+  title: string;
 }
 
 const AuthInputWrap = styled.div`
@@ -31,6 +33,8 @@ const AuthInput = ({
   label,
   clearTrigger,
   setClearTrigger,
+  register,
+  title,
 }: AuthData): JSX.Element => {
   const [inputValue, setInputValue] = useState<string>("");
   const [visiblePass, setVisiblePass] = useState<boolean>(false);
@@ -50,16 +54,18 @@ const AuthInput = ({
       <label className="label">{label}</label>
       <AuthInputWrap>
         <input
-          value={inputValue}
+          {...register(title)}
           className="input"
           onFocus={() => handleFocus()}
           onBlur={() => handleBlur()}
+          value={inputValue}
           onChange={e => {
             setInputValue(e.target.value);
+            register(title).onChange(e);
           }}
           type={
             label === "이메일"
-              ? "email"
+              ? "text"
               : label.includes("비밀번호")
                 ? visiblePass
                   ? "text"
