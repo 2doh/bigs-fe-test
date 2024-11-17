@@ -52,10 +52,16 @@ jwtAxios.interceptors.response.use(
         if (err.config.headers) {
           err.config.headers.Authorization = `Bearer ${newAccessToken}`;
         }
-        return jwtAxios(err.config);
+
+        // 비동기 요청 재시도
+        return await jwtAxios(err.config);
       } catch (refreshError) {
         // 리프레시 토큰도 만료된 경우 추가 처리 가능
         console.error("리프레시 토큰 만료:", refreshError);
+
+        alert("세션이 만료되었습니다. 다시 로그인 해주세요.");
+        window.location.href = "/login";
+
         return Promise.reject(refreshError);
       }
     }

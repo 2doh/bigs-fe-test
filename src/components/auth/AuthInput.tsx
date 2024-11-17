@@ -72,7 +72,11 @@ const AuthInput = ({
                   : "password"
                 : "text"
           }
-          placeholder={placeholder}
+          placeholder={
+            placeholder === "비밀번호"
+              ? "비밀번호는 8자 이상 영문 숫자 특수문자의 조합입니다."
+              : placeholder
+          }
         ></input>
         <BTWrapStyle>
           {label.includes("비밀번호") &&

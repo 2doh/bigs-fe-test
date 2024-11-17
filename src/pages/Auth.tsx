@@ -62,7 +62,11 @@ const loginSchema = yup.object().shape({
   password: yup
     .string()
     .required("비밀번호를 입력해주세요.")
-    .min(8, "비밀번호는 최소 8자 이상입니다."),
+    .min(8, "비밀번호는 최소 8자 이상입니다.")
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!%*#?&@#])[A-Za-z\d!%*#?&@#]{8,}$/,
+      "비밀번호는 8자 이상 영어와 숫자 및 특수문자의 조합으로 입력해 주세요.",
+    ),
 });
 
 const Auth = (): JSX.Element => {

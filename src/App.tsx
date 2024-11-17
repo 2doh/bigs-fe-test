@@ -14,11 +14,11 @@ function App() {
     <Routes>
       <Route index element={<Auth></Auth>}></Route>
       <Route path="*" element={<NotFound />}></Route>
-      <Route path="/write" element={<WritePost></WritePost>}></Route>
-      <Route path="/view:id" element={<ViewPost></ViewPost>}></Route>
+      {/* <Route path="/view/:id" element={<ViewPost></ViewPost>}></Route> */}
       {accessToken && (
         <>
           <Route path="board" element={<Board></Board>}></Route>
+          <Route path="/write" element={<WritePost></WritePost>}></Route>
         </>
       )}
     </Routes>
