@@ -15,13 +15,13 @@ const Header = () => {
   const { userId, userName } = userState();
   const handleGetCategories = async () => {
     const result = await getCategories();
-    console.log(result);
+    // console.log(result);
     if (result.status === 200) {
       const categorieArr: Category[] = [];
       for (const [title, category] of Object.entries(result.data)) {
         categorieArr.push({ title, category: category as string });
       }
-      console.log(categorieArr);
+      // console.log(categorieArr);
       setCategories(categorieArr);
     }
     if (result === "토큰이 만료되었습니다") {

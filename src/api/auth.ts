@@ -37,6 +37,7 @@ export const userSignin = async (data: userSign) => {
       data,
     );
     setCookie("accesstoken", response.data.accessToken);
+    setCookie("refreshToken", response.data.refreshToken);
     console.log(response);
     return {
       status: response.status,
