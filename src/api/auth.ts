@@ -1,5 +1,6 @@
 import axios from "axios";
 import { userSign } from "../interface/authInterface";
+import { setCookie } from "../util/cookie";
 
 export const userSignup = async (data: userSign) => {
   // console.log(data);
@@ -35,6 +36,7 @@ export const userSignin = async (data: userSign) => {
       `https://front-mission.bigs.or.kr/auth/signin`,
       data,
     );
+    setCookie("accesstoken", response.data.accessToken);
     console.log(response);
     return {
       status: response.status,

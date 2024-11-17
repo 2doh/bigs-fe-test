@@ -10,6 +10,7 @@ import { setCookie } from "../util/cookie";
 import base64 from "base-64";
 import { userSign } from "../interface/authInterface";
 import { useNavigate } from "react-router-dom";
+import userState from "../store/userState";
 
 const initTitle = [
   { label: "이메일", title: "username" },
@@ -123,7 +124,6 @@ const Auth = (): JSX.Element => {
       const result = await userSignin(signinData);
       if (typeof result === "object" && result.status === 200) {
         // console.log("로그인 성공");
-        setCookie("accesstoken", result.data.accessToken);
         const token = result.data.accessToken;
         const payload = token.split(".")[1];
         const payloadToJson = JSON.parse(base64.decode(payload));
@@ -134,6 +134,8 @@ const Auth = (): JSX.Element => {
         };
         setCookie("name", sigedUser.userName);
         setCookie("username", sigedUser.userId);
+        userState.getState().setUserId(sigedUser.userId);
+        userState.getState().setUserName(sigedUser.userName);
         // console.log(sigedUser);
         navi("/board");
       }
